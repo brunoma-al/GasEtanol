@@ -3,6 +3,8 @@ package devandroid.bruno.gasetanol.controller;
 import android.content.ContentValues;
 import android.content.SharedPreferences;
 
+import java.util.List;
+
 import devandroid.bruno.gasetanol.database.GasEta;
 import devandroid.bruno.gasetanol.model.Combustivel;
 import devandroid.bruno.gasetanol.view.GasEtaActivity;
@@ -36,6 +38,32 @@ public class Controller extends GasEta {
         salvarObjeto("Combustivel", dados);
     }
 
-    private void salvarObjeto(String combustivel, ContentValues dados) {
+    public List<Combustivel> getListaDeDados(){
+        List<Combustivel> listarDados = null;
+        return null;
+    }
+
+    public void alterar(Combustivel combustivel){
+
+        ContentValues dados = new ContentValues();
+
+        dados.put("id",combustivel.getId());
+        dados.put("nomeDoCombustivel", combustivel.getNomeDoCombustivel());
+        dados.put("precoDoCombustivel", combustivel.getPrecoDoCombustivel());
+        dados.put("recomendacao", combustivel.getRecomendacao());
+
+        alterarObjeto("Combustivel",dados);
+
+    }
+
+    public void deletar(int id){
+        deletarObjeto("Combustivel",id);
+    }
+
+
+    public void limpar(){
+
+        dadosPreferences.clear();
+        dadosPreferences.apply();
     }
 }
